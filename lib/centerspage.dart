@@ -32,7 +32,7 @@ class _CentersPageState extends State<CentersPage> {
   final List<Map<String, String>> cf = [
     {
       'image': 'images/m.png',
-      'name': ' ABC ',
+      'name': ' EBC ',
       'loc': 'madrid',
       'phone': '2556278',
       'details': 'مركز تكويني للتدريب على المهارات اليدوية.',
@@ -45,12 +45,9 @@ class _CentersPageState extends State<CentersPage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('المراكز'),
-          centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 18, 88, 211),
-          bottom: const TabBar(
-            labelColor: Colors.white,
-
+          title: const TabBar(
+            labelColor: Colors.blue,
+            
             tabs: [
               Tab(text: 'الأدبية'),
               Tab(text: 'العلمية'),
@@ -58,7 +55,6 @@ class _CentersPageState extends State<CentersPage> {
             ],
           ),
         ),
-        drawer: _buildDrawer(context),
         body: TabBarView(
           children: [
             _buildCenterList(cl),
@@ -70,55 +66,18 @@ class _CentersPageState extends State<CentersPage> {
     );
   }
 
-  Widget _buildDrawer(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          UserAccountsDrawerHeader(
-            accountName: Text('زائر'),
-            accountEmail: Text(''),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Icon(Icons.person, size: 40, color: Colors.blue),
-            ),
-            decoration: BoxDecoration(color: Color.fromARGB(255, 18, 88, 211)),
-          ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('الرئيسية'),
-            onTap: () => Navigator.pop(context),
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('الحساب'),
-            onTap: () => Navigator.pop(context),
-          ),
-          ListTile(
-            leading: Icon(Icons.info_outline),
-            title: Text('من نحن'),
-            onTap: () => Navigator.pop(context),
-          ),
-          ListTile(
-            leading: Icon(Icons.phone),
-            title: Text('تواصل معنا'),
-            onTap: () => Navigator.pop(context),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildCenterList(List<Map<String, String>> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, i) {
         final center = data[i];
-        return ListTile(
-          leading: Image.asset(center['image']!, width: 50, height: 50),
-          title: Text(center['name']!),
-          subtitle: Text(center['loc']!),
-          onTap: () {
+        return Card(
+            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: ListTile(
+            leading: Image.asset(center['image']!, width: 50, height: 50),
+            title: Text(center['name']!),
+            subtitle: Text(center['loc']!),
+            onTap: () {
             showDialog(
               context: context,
               builder: (context) {
@@ -162,7 +121,7 @@ class _CentersPageState extends State<CentersPage> {
               },
             );
           },
-        );
+        ));
       },
     );
   }
